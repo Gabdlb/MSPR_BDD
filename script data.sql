@@ -1,16 +1,16 @@
-TRUNCATE TABLE adresse;
-TRUNCATE TABLE site;
-TRUNCATE TABLE entreprise;
-TRUNCATE TABLE centre;
-TRUNCATE TABLE fonction;
-TRUNCATE TABLE employe;
-TRUNCATE TABLE type_dechet;
-TRUNCATE TABLE modele;
-TRUNCATE TABLE camion;
-TRUNCATE TABLE tournee;
-TRUNCATE TABLE demande;
-TRUNCATE TABLE detail_depot;
 TRUNCATE TABLE detail_demande;
+TRUNCATE TABLE detail_depot;
+TRUNCATE TABLE demande;
+TRUNCATE TABLE tournee;
+TRUNCATE TABLE camion;
+TRUNCATE TABLE modele;
+TRUNCATE TABLE type_dechet;
+TRUNCATE TABLE employe;
+TRUNCATE TABLE fonction;
+TRUNCATE TABLE centre;
+TRUNCATE TABLE entreprise;
+TRUNCATE TABLE site;
+TRUNCATE TABLE adresse;
 
 INSERT INTO adresse (idAdresse,numero,rue,cp,ville)
           select 1,1,'rue','44000','Lille' from dual
@@ -20,7 +20,6 @@ union all select 4,15,'Rue des plages','59175','Templemars' from dual
 union all select 5,23,'rue des champs','59800','Lille' from dual
 union all select 6,14,'Chemin de la frontière','59800','Lille' from dual
 ;
-
 
 INSERT INTO site (idSite,nom,idadresse)
           select 1,'site Nantes',1 from dual
@@ -57,12 +56,10 @@ INSERT INTO modele (idmodele,nomModele,marque)
 union all select 2,'EXPERT TEPEE COURT','Peugeot' from dual
 ;
 
-
 INSERT INTO camion (immatriculation,dateAchat,idSite,idModele)
           select '125ABC59',TO_DATE('12/01/1999','DD/MM/YYYY'),1,1 from dual
 union all select '658DEC59',TO_DATE('16/11/1998','DD/MM/YYYY'),1,2 from dual
 ;
-
 
 INSERT INTO tournee (idTournee,dateTournee,immatriculation,idEmploye)
           select 1,TO_DATE('10/09/2018','DD/MM/YYYY'),'125ABC59',1 from dual
@@ -74,10 +71,6 @@ INSERT INTO demande (idDemande,dateDemande,dateEnlevement,siret,idTournee,idSite
 union all select 2,TO_DATE('22/08/2018','DD/MM/YYYY'),TO_DATE('01/09/2018','DD/MM/YYYY'),024565590120057,1,1 from dual
 ;
 
-
-
-
-
 INSERT INTO detail_depot (idTournee,idTypeDechet,idCentre,quantiteDeposee)
           select 1,1,1,100 from dual
 union all select 1,2,1,290 from dual
@@ -87,4 +80,3 @@ INSERT INTO detail_demande (idDemande,idTypeDechet,quantiteEnlevee,remarque)
           select 1,1,100,'' from dual
 union all select 1,2,50,'' from dual
 ;
-
