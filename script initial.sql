@@ -24,7 +24,9 @@ CREATE TABLE adresse (
 CREATE TABLE site (
     idSite                  NUMBER(10),
     nom                 VARCHAR(50) NOT NULL,
-    constraint PK_site PRIMARY KEY (idSite)
+    idadresse         number(10),
+    constraint PK_site PRIMARY KEY (idSite),
+    constraint FK_site_adresse foreign key (idadresse) references adresse(idAdresse)
 );
 
 CREATE TABLE entreprise (
@@ -72,14 +74,23 @@ CREATE TABLE type_dechet (
     constraint PK_type_dechet primary key(idTypeDechet)
 );
 
+CREATE TABLE modele (
+    idmodele    number(10) not null,
+    nomModele   varchar(20),
+    marque      varchar(20),
+    constraint PK_modele primary key(idmodele)
+);
+
+
 CREATE TABLE camion (
     immatriculation	 char(10) not null,
     dateAchat	 date,
-    modele 		 varchar(50) not null,
-    marque		 varchar(50) not null,
     idSite       NUMBER(10),
+    idModele     NUMBER(10),
+    
     constraint PK_camion primary key(immatriculation),
-    constraint FK_site_camion foreign key (idSite) references site(idSite )
+    constraint FK_site_camion foreign key (idSite) references site(idSite ),
+    constraint FK_modele_camion foreign key (idModele) references modele(idmodele)
 );
 
 
