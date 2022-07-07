@@ -14,7 +14,7 @@ BEGIN
     JOIN type_dechet td on td.idTypeDechet = dp.idtypedechet
     JOIN camion c on t.immatriculation = c.immatriculation
     JOIN site s on c.idsite = s.idsite
-    WHERE sitedemander = s.idsite AND t.datetournee < date_fin AND datetournee > date_debut AND td.nom = nom_type;
+    WHERE sitedemander = s.idsite AND t.datetournee < date_fin AND datetournee > date_debut AND td.NOMTYPEDECHET = nom_type;
     
     RETURN total_dechets;
     
