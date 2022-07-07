@@ -67,11 +67,21 @@ CREATE TABLE employe (
     constraint FK_site_employe foreign key (idSite) references site(idSite)
 );
 
+CREATE TABLE tarif (
+    idTarif             number(6) not null,
+    tarifForfaitaire    number(8,2) not null,
+    tarifLot            number(8,2) not null,
+    unite               varchar2(10) not null,
+    constraint PK_tarif primary key(idTarif)
+);
+
 CREATE TABLE type_dechet (
     idTypeDechet	 number(3) not null,
     nomTypeDechet	 varchar(50),
     niv_danger	 number(1),
-    constraint PK_type_dechet primary key(idTypeDechet)
+    idTarif      number(6),
+    constraint PK_type_dechet primary key(idTypeDechet),
+    constraint FK_tarif_typedec foreign key (idTarif) references tarif(idTarif)
 );
 
 CREATE TABLE modele (
