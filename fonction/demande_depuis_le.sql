@@ -20,3 +20,4 @@ RETURN;
 END;
     
 SELECT * FROM TABLE(fnc_demande_depuis_le_pipelined('20/08/2018'));
+    
