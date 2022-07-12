@@ -8,13 +8,14 @@ quantiteEnleveeTotale number;
 
 BEGIN
 
-    SELECT dd.quantiteenlevee
+    SELECT COUNT(dd.quantiteenlevee)
     into quantiteEnleveeTotale
-    FROM detail_depot dp
-    inner join type_dechet td on td.idtypedechet = dp.idtypedechet
-    inner join detail_demande dd on dd.idtypedechet = td.idtypedechet;
+    FROM detail_demande dd
+    inner join type_dechet td on dd.idtypedechet = td.idtypedechet
+    inner join demande d on d.iddemande = dd.iddemande
+    where :new.idtypedechet = dd.idtypedechet and :new.idtournee = d.idtournee;
     
-    if :new.QUANTITEDEPOSEE < quantiteEnleveeTotale
+    if :new.QUANTITEDEPOSEE > quantiteEnleveeTotale
         then
             raise_application_error(-20000,'La quantité de déchets prélevée lors dune tournée ne doit pas être supérieure à la quantité déposée');
     end if;
