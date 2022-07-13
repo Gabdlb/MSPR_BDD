@@ -4,6 +4,6 @@ CREATE VIEW v_demandes_non_inscrites_tournee
 as
 SELECT idDemande, dateDemande, dateEnlevement, siret, idSite
 FROM demande
-WHERE idTournee IS NOT NULL
+WHERE idTournee IS NULL
 
 select * from v_demandes_non_inscrites_tournee
