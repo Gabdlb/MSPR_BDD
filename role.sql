@@ -33,6 +33,7 @@ Grant CREATE session to RH;
 
 CREATE role DIRECTEUR_LOC;
 GRANT ALL PRIVILEGES on centre to DIRECTEUR_LOC; 
+Grant CREATE session to DIRECTEUR_LOC;
 
 CREATE role AGENT;
 GRANT SELECT ON entreprise to AGENT;
@@ -44,17 +45,20 @@ GRANT UPDATE ON adresse to AGENT;
 GRANT SELECT ON tournee to AGENT;
 GRANT CREATE ON tournee to AGENT;
 GRANT UPDATE ON tournee to AGENT;
+Grant CREATE session to AGENT;
 
 CREATE role RESPONSABLE_LOC;
 GRANT SELECT ON site to RESPONSABLE_LOC;
+Grant CREATE session to RESPONSABLE_LOC;
 
 CREATE role EMPLOYE;
-GRANT SELECT on employe to employe;
-GRANT SELECT on centre to employe;
-GRANT SELECT on tournee to employe;
+GRANT SELECT on employe to EMPLOYE;
+GRANT SELECT on centre to EMPLOYE;
+GRANT SELECT on tournee to EMPLOYE;
+Grant CREATE session to EMPLOYE;
 
 CREATE role PDG;
-
+Grant CREATE session to PDG;
 declare
 cursor c1 is select table_name from user_tables;
 cmd varchar2(200);
